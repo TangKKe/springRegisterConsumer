@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: CONSUMER-01
+server:
+  port: 8003
+  context-path: /consumer #设置服务上下文路径
+eureka:
+  instance:
+    ipAddress: 106.12.85.1
+    instance-id: ${eureka.instance.ipAddress}:${server.port}
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: ENC(kmLb1Rz3uOwhBE3YusKbTwV6NziehEHFfonrQiQtjA6N5/vTBhmIyhiV3IHCJ9quTQ8ahNdF3s2C7b3aUQALCA==)
+    fetch-registry: true
+    register-with-eureka: true
+# 安全认证的配置  
+security:  
+  basic:  
+    enabled: true  
+  user:  
+    name: ENC(LXIklcSCNtwTnS16B69VDw==)  # 加密后用户名，原值tangke  
+    password: ENC(O7HZJPQEEnK1ps78EfuPdGdgNIN/7S8F)  # 加密后用户密码，原值tangke123
+#jasypt加密的密匙，同一原文，每次生成的密文都是不一致的，但解密后原文一致
+jasypt:
+  encryptor:
+    password: EbfYkitulv73I2p0mXI50JMXoaxZTKJ7
+#自定义redis配置
+redis:
+  nodes: 106.12.85.1:7003,106.12.85.1:7004,106.12.85.1:7005,106.13.2.1:7000,106.13.2.1:7001,106.13.2.1:7002 #IP和端口号
+  commandTimeout: 10000  #redis操作的超时时间
+  maxTotal: 5000 #最大连接数
+  maxIdle: 30 #最大空闲连接数
+  minIdle: 5 #最小空闲连接数
+  maxWait: 3000  #获取连接最大等待时间 ms  #default -1
+  pwd: ENC(B5mYXT5cyJuQNTDAs9MqLMC1bLLJETdJ)
+#自定义服务提供者-服务名与服务提供者实例名一致
+providerUrl: http://APPLICATION-01/provider
