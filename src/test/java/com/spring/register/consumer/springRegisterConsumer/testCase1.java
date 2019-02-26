@@ -11,6 +11,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import com.spring.register.consumer.springRegisterConsumer.redisCluster.RedisUtil;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -32,6 +35,15 @@ public class testCase1 {
 	
 	@Autowired
     protected WebApplicationContext wac;
+	
+	@Autowired
+	RedisUtil redisUtil;
+	
+	@Test
+	public void testGetInfo() {
+		System.out.println(redisUtil.getObjectByKey("name"));
+		
+	}
 
     @Before()  //这个方法在每个方法执行之前都会执行一遍
     public void setup() {

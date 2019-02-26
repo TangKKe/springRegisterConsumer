@@ -30,7 +30,6 @@ public class ConsumerApplication {
 	 */
 	@Value("${security.user.password}")
 	private String passWord;
-	
 	//注入restTemplate
 		@Bean
 		@LoadBalanced
@@ -41,7 +40,6 @@ public class ConsumerApplication {
 			restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(userName, passWord));
 		    return restTemplate;
 		}
-	
 	/**
 	 * 主函数入口。
 	 * @param args
